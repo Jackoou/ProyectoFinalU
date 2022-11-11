@@ -12,7 +12,11 @@ import java.awt.Color;
  */
 public class SeleccionConsola extends javax.swing.JFrame {
 
-    int xMouse, yMouse, xMouse1, yMouse1, xMouse2, yMouse2;
+    crudSwitch tercerFrame = new crudSwitch();
+    crudXbox cuartoFrame = new crudXbox();
+    //crudPlay quintoFrame = new crudPlay();
+    
+    int xMouse, yMouse;
     public SeleccionConsola() {
         initComponents();
     }
@@ -48,15 +52,15 @@ public class SeleccionConsola extends javax.swing.JFrame {
         Fondo.setBackground(new java.awt.Color(51, 102, 255));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombreU.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        txtNombreU.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         txtNombreU.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreU.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtNombreU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNombreU.setText("name");
-        Fondo.add(txtNombreU, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 130, 40));
+        Fondo.add(txtNombreU, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 230, 60));
 
-        txtTexto.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        txtTexto.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         txtTexto.setText("Selecciona la consola a trabajar");
-        Fondo.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 510, 20));
+        Fondo.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 610, -1));
 
         Header.setOpaque(false);
         Header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -125,7 +129,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
 
         Fondo.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        btnXbox.setBackground(new java.awt.Color(78, 79, 83));
+        btnXbox.setBackground(new java.awt.Color(30, 82, 17));
         btnXbox.setForeground(new java.awt.Color(49, 78, 146));
         btnXbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -134,7 +138,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
         });
 
         txtXbox.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtXbox.setForeground(new java.awt.Color(120, 180, 82));
+        txtXbox.setForeground(new java.awt.Color(17, 123, 17));
         txtXbox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtXbox.setText("XBOX");
         txtXbox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -161,9 +165,9 @@ public class SeleccionConsola extends javax.swing.JFrame {
             .addComponent(txtXbox, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        Fondo.add(btnXbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 160, 60));
+        Fondo.add(btnXbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, 160, 60));
 
-        btnPlay.setBackground(new java.awt.Color(217, 219, 231));
+        btnPlay.setBackground(new java.awt.Color(3, 121, 234));
         btnPlay.setForeground(new java.awt.Color(49, 78, 146));
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -173,7 +177,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
 
         txtPlay.setBackground(new java.awt.Color(217, 219, 231));
         txtPlay.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtPlay.setForeground(new java.awt.Color(103, 162, 218));
+        txtPlay.setForeground(new java.awt.Color(3, 65, 156));
         txtPlay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtPlay.setText("PLAYSTATION");
         txtPlay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -200,7 +204,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
             .addComponent(txtPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        Fondo.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, 160, 60));
+        Fondo.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 160, 60));
 
         btnNintendo.setBackground(new java.awt.Color(73, 4, 5));
         btnNintendo.setForeground(new java.awt.Color(49, 78, 146));
@@ -239,11 +243,11 @@ public class SeleccionConsola extends javax.swing.JFrame {
             .addComponent(txtNintendo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        Fondo.add(btnNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 160, 60));
+        Fondo.add(btnNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 160, 60));
 
-        imgFondoImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/xbox-ps5-switch_2.jpg"))); // NOI18N
+        imgFondoImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/three-companies.jpg"))); // NOI18N
         imgFondoImagen.setPreferredSize(new java.awt.Dimension(600, 540));
-        Fondo.add(imgFondoImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 799, -1));
+        Fondo.add(imgFondoImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,31 +297,33 @@ public class SeleccionConsola extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXboxMouseExited
 
     private void txtXboxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtXboxMousePressed
-       
+        this.setVisible(false);
+        cuartoFrame.setVisible(true);
     }//GEN-LAST:event_txtXboxMousePressed
 
     private void txtXboxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtXboxMouseExited
-        btnXbox.setBackground(new Color(81,82,86));
-        txtXbox.setForeground(new Color(120,180,82));
+        btnXbox.setBackground(new Color(30,82,17));
+        txtXbox.setForeground(new Color(17,123,17));
     }//GEN-LAST:event_txtXboxMouseExited
 
     private void txtXboxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtXboxMouseEntered
-        btnXbox.setBackground(new Color(167,0,2));
-        txtXbox.setForeground(new Color(0,0,0));
+        btnXbox.setBackground(new Color(232,1,18));
+        txtXbox.setForeground(Color.white);
     }//GEN-LAST:event_txtXboxMouseEntered
 
     private void txtPlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPlayMouseEntered
-        btnPlay.setBackground(new Color(121,181,83));
-        txtPlay.setForeground(new Color(217,219,231));
+        btnPlay.setBackground(new Color(17,123,17));
+        txtPlay.setForeground(Color.white);
     }//GEN-LAST:event_txtPlayMouseEntered
 
     private void txtPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPlayMouseExited
-        btnPlay.setBackground(new Color(217,219,231));
-        txtPlay.setForeground(new Color(103,162,218));
+        btnPlay.setBackground(new Color(3,121,234));
+        txtPlay.setForeground(new Color(3,65,156));
     }//GEN-LAST:event_txtPlayMouseExited
 
     private void txtPlayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPlayMousePressed
-        // TODO add your handling code here:
+        //this.setVisible(false);
+        //quintoFrame.setVisible(true);
     }//GEN-LAST:event_txtPlayMousePressed
 
     private void btnPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseExited
@@ -325,8 +331,8 @@ public class SeleccionConsola extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlayMouseExited
 
     private void txtNintendoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNintendoMouseEntered
-        btnNintendo.setBackground(new Color(3,200,242));
-        txtNintendo.setForeground(new Color(73,4,5));
+        btnNintendo.setBackground(new Color(3,65,156));
+        txtNintendo.setForeground(Color.white);
     }//GEN-LAST:event_txtNintendoMouseEntered
 
     private void txtNintendoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNintendoMouseExited
@@ -335,7 +341,8 @@ public class SeleccionConsola extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNintendoMouseExited
 
     private void txtNintendoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNintendoMousePressed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        tercerFrame.setVisible(true);
     }//GEN-LAST:event_txtNintendoMousePressed
 
     private void btnNintendoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNintendoMouseExited

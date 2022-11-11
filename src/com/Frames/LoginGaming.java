@@ -282,7 +282,8 @@ public class LoginGaming extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "El campo de Password no puede estar vacio.", "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            //Aquí cambia de JFrame
             this.setVisible(false);
             segundoFrame.setVisible(true);
         }
@@ -310,14 +311,7 @@ public class LoginGaming extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPasswordMousePressed
 
     private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
-        if(tfUsuario.getText().equals("Ingrese el nombre de usuario")){
-            tfUsuario.setText("");
-            tfUsuario.setForeground(Color.black);
-        }
-        if(String.valueOf(tfPassword.getPassword()).isEmpty()){
-            tfPassword.setText("123456789");
-            tfPassword.setForeground(Color.gray);
-        }
+        
     }//GEN-LAST:event_btnLoginMousePressed
 
     private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
