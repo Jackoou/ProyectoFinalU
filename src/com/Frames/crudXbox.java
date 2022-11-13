@@ -32,19 +32,6 @@ public class crudXbox extends javax.swing.JFrame {
         Header = new javax.swing.JPanel();
         jpExit = new javax.swing.JPanel();
         txtExit = new javax.swing.JLabel();
-        jpIngresarDatos = new javax.swing.JPanel();
-        txtTitulo = new javax.swing.JLabel();
-        tfTitulo = new javax.swing.JTextField();
-        txtPublic = new javax.swing.JLabel();
-        tfPublic = new javax.swing.JTextField();
-        txtEstudio = new javax.swing.JLabel();
-        tfEstudio = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JLabel();
-        txtFormato = new javax.swing.JLabel();
-        cbGenero = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
         jPBotones = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JPanel();
         txtNuevo = new javax.swing.JLabel();
@@ -58,6 +45,21 @@ public class crudXbox extends javax.swing.JFrame {
         txtEnviar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jpIngresarDatos = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        tfTitulo = new javax.swing.JTextField();
+        txtPublic = new javax.swing.JLabel();
+        txtConsola = new javax.swing.JLabel();
+        tfConsola = new javax.swing.JTextField();
+        txtGenero = new javax.swing.JLabel();
+        txtFormato = new javax.swing.JLabel();
+        cbGenero = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        txtDirector = new javax.swing.JLabel();
+        tfDirector = new javax.swing.JTextField();
+        jDateXbox = new com.toedter.calendar.JDateChooser();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,114 +136,6 @@ public class crudXbox extends javax.swing.JFrame {
         );
 
         jPanel1.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 40));
-
-        jpIngresarDatos.setOpaque(false);
-
-        txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtTitulo.setText("Titulo");
-
-        tfTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtPublic.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtPublic.setText("Fecha Publicación");
-
-        tfPublic.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfPublic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPublicActionPerformed(evt);
-            }
-        });
-
-        txtEstudio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtEstudio.setText("Estudio");
-
-        tfEstudio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtGenero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtGenero.setText("Genero");
-
-        txtFormato.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtFormato.setText("Formato");
-
-        cbGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "RPG", "Aventuras", "Acción", "Infantil", "Musical" }));
-        cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Digital");
-
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Físico");
-
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setText("Coleccionista");
-
-        javax.swing.GroupLayout jpIngresarDatosLayout = new javax.swing.GroupLayout(jpIngresarDatos);
-        jpIngresarDatos.setLayout(jpIngresarDatosLayout);
-        jpIngresarDatosLayout.setHorizontalGroup(
-            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtGenero)
-                    .addComponent(txtFormato)
-                    .addComponent(txtTitulo)
-                    .addComponent(txtEstudio)
-                    .addComponent(txtPublic))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
-                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfEstudio, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                                .addComponent(tfPublic)
-                                .addComponent(tfTitulo))
-                            .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox3)
-                        .addGap(21, 21, 21))))
-        );
-        jpIngresarDatosLayout.setVerticalGroup(
-            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTitulo)
-                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPublic)
-                    .addComponent(tfPublic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEstudio)
-                    .addComponent(tfEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGenero)
-                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtFormato))
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox3))))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jpIngresarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 490, 280));
 
         jPBotones.setOpaque(false);
 
@@ -502,6 +396,123 @@ public class crudXbox extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 320, 150));
 
+        jpIngresarDatos.setOpaque(false);
+
+        txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtTitulo.setText("Titulo");
+
+        tfTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        txtPublic.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtPublic.setText("Fecha Publicación");
+
+        txtConsola.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtConsola.setText("Consola");
+
+        tfConsola.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        txtGenero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtGenero.setText("Genero");
+
+        txtFormato.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtFormato.setText("Formato");
+
+        cbGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "RPG", "Aventuras", "Acción", "Infantil", "Musical" }));
+        cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox1.setText("Digital");
+
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setText("Físico");
+
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox3.setText("Coleccionista");
+
+        txtDirector.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtDirector.setText("Director");
+
+        tfDirector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jDateXbox.setDateFormatString("dd-MM-yyyy");
+
+        javax.swing.GroupLayout jpIngresarDatosLayout = new javax.swing.GroupLayout(jpIngresarDatos);
+        jpIngresarDatos.setLayout(jpIngresarDatosLayout);
+        jpIngresarDatosLayout.setHorizontalGroup(
+            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtGenero)
+                            .addComponent(txtTitulo)
+                            .addComponent(txtConsola)
+                            .addComponent(txtPublic)
+                            .addComponent(txtFormato))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
+                                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfTitulo)
+                                    .addComponent(cbGenero, 0, 213, Short.MAX_VALUE)
+                                    .addComponent(tfConsola)
+                                    .addComponent(jDateXbox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(40, 40, 40))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
+                                .addComponent(jCheckBox1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox3)
+                                .addGap(21, 21, 21))))
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(txtDirector)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
+        );
+        jpIngresarDatosLayout.setVerticalGroup(
+            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTitulo)
+                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPublic)
+                    .addComponent(jDateXbox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConsola)
+                    .addComponent(tfConsola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGenero)
+                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(txtFormato))
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox3))))
+                .addGap(18, 18, 18)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDirector)
+                    .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jpIngresarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 490, 300));
+
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Halo-Infinite-UK-release-date-age-rating-and-parents-guide.jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -546,10 +557,6 @@ public class crudXbox extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_HeaderMousePressed
-
-    private void tfPublicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPublicActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPublicActionPerformed
 
     private void txtEnviarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMouseEntered
         btnEnviar.setBackground(new Color(242,69,62));
@@ -708,20 +715,22 @@ public class crudXbox extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private com.toedter.calendar.JDateChooser jDateXbox;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPBotones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpExit;
     private javax.swing.JPanel jpIngresarDatos;
-    private javax.swing.JTextField tfEstudio;
-    private javax.swing.JTextField tfPublic;
+    private javax.swing.JTextField tfConsola;
+    private javax.swing.JTextField tfDirector;
     private javax.swing.JTextField tfTitulo;
+    private javax.swing.JLabel txtConsola;
     private javax.swing.JLabel txtConsultar;
+    private javax.swing.JLabel txtDirector;
     private javax.swing.JLabel txtEditar;
     private javax.swing.JLabel txtEliminar;
     private javax.swing.JLabel txtEnviar;
-    private javax.swing.JLabel txtEstudio;
     private javax.swing.JLabel txtExit;
     private javax.swing.JLabel txtFormato;
     private javax.swing.JLabel txtGenero;
