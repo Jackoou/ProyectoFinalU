@@ -244,11 +244,6 @@ public class crudPlay extends javax.swing.JFrame {
 
         jPanel1.add(jpIngresarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 490, 280));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "sdfsdf", "sdfsdf", "sdfsd", "fsdf", "sdfs", "dffg", "dfg", "df", "gdf", "gd", "fgdf" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setEnabled(false);
         jScrollPane1.setViewportView(jList1);
 
