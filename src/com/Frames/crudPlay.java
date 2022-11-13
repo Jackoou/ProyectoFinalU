@@ -256,7 +256,7 @@ public class crudPlay extends javax.swing.JFrame {
 
         jpBotones.setOpaque(false);
 
-        btnNuevo.setBackground(new java.awt.Color(183, 201, 213));
+        btnNuevo.setBackground(new java.awt.Color(48, 18, 7));
         btnNuevo.setForeground(new java.awt.Color(49, 78, 146));
         btnNuevo.setToolTipText("");
         btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -269,7 +269,7 @@ public class crudPlay extends javax.swing.JFrame {
         });
 
         txtNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtNuevo.setForeground(new java.awt.Color(61, 113, 169));
+        txtNuevo.setForeground(new java.awt.Color(224, 124, 48));
         txtNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNuevo.setText("Nuevo");
         txtNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -298,7 +298,7 @@ public class crudPlay extends javax.swing.JFrame {
             .addComponent(txtNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        btnEliminar.setBackground(new java.awt.Color(183, 201, 213));
+        btnEliminar.setBackground(new java.awt.Color(48, 18, 7));
         btnEliminar.setForeground(new java.awt.Color(49, 78, 146));
         btnEliminar.setToolTipText("");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,7 +311,7 @@ public class crudPlay extends javax.swing.JFrame {
         });
 
         txtEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtEliminar.setForeground(new java.awt.Color(61, 113, 169));
+        txtEliminar.setForeground(new java.awt.Color(224, 124, 48));
         txtEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtEliminar.setText("Eliminar");
         txtEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -340,7 +340,7 @@ public class crudPlay extends javax.swing.JFrame {
             .addComponent(txtEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        btnConsultar.setBackground(new java.awt.Color(183, 201, 213));
+        btnConsultar.setBackground(new java.awt.Color(48, 18, 7));
         btnConsultar.setForeground(new java.awt.Color(49, 78, 146));
         btnConsultar.setToolTipText("");
         btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,7 +353,7 @@ public class crudPlay extends javax.swing.JFrame {
         });
 
         txtConsultar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtConsultar.setForeground(new java.awt.Color(61, 113, 169));
+        txtConsultar.setForeground(new java.awt.Color(224, 124, 48));
         txtConsultar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtConsultar.setText("Consultar");
         txtConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -382,7 +382,7 @@ public class crudPlay extends javax.swing.JFrame {
             .addComponent(txtConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        btnEditar.setBackground(new java.awt.Color(183, 201, 213));
+        btnEditar.setBackground(new java.awt.Color(48, 18, 7));
         btnEditar.setForeground(new java.awt.Color(49, 78, 146));
         btnEditar.setToolTipText("");
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -395,7 +395,7 @@ public class crudPlay extends javax.swing.JFrame {
         });
 
         txtEditar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtEditar.setForeground(new java.awt.Color(61, 113, 169));
+        txtEditar.setForeground(new java.awt.Color(224, 124, 48));
         txtEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtEditar.setText("Editar");
         txtEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -424,7 +424,7 @@ public class crudPlay extends javax.swing.JFrame {
             .addComponent(txtEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        btnEnviar.setBackground(new java.awt.Color(183, 201, 213));
+        btnEnviar.setBackground(new java.awt.Color(48, 18, 7));
         btnEnviar.setForeground(new java.awt.Color(49, 78, 146));
         btnEnviar.setToolTipText("");
         btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -437,7 +437,7 @@ public class crudPlay extends javax.swing.JFrame {
         });
 
         txtEnviar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtEnviar.setForeground(new java.awt.Color(61, 113, 169));
+        txtEnviar.setForeground(new java.awt.Color(224, 124, 48));
         txtEnviar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtEnviar.setText("Guardar");
         txtEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -553,13 +553,13 @@ public class crudPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPublicActionPerformed
 
     private void txtNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMouseEntered
-        btnNuevo.setBackground(new Color(61,113,169));
-        txtNuevo.setForeground(new Color(183,201,213));
+        btnNuevo.setBackground(new Color(159,165,181));
+        txtNuevo.setForeground(Color.white);
     }//GEN-LAST:event_txtNuevoMouseEntered
 
     private void txtNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMouseExited
-        btnNuevo.setBackground(new Color(183,201,213));
-        txtNuevo.setForeground(new Color(61,113,169));
+        btnNuevo.setBackground(new Color(48,18,7));
+        txtNuevo.setForeground(new Color(224,124,48));
     }//GEN-LAST:event_txtNuevoMouseExited
 
     private void txtNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMousePressed
@@ -575,13 +575,13 @@ public class crudPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoMousePressed
 
     private void txtEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMouseEntered
-        btnEliminar.setBackground(new Color(61,113,169));
-        txtEliminar.setForeground(new Color(183,201,213));
+        btnEliminar.setBackground(new Color(159,165,181));
+        txtEliminar.setForeground(Color.white);
     }//GEN-LAST:event_txtEliminarMouseEntered
 
     private void txtEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMouseExited
-        btnEliminar.setBackground(new Color(183,201,213));
-        txtEliminar.setForeground(new Color(61,113,169));
+        btnEliminar.setBackground(new Color(48,18,7));
+        txtEliminar.setForeground(new Color(224,124,48));
     }//GEN-LAST:event_txtEliminarMouseExited
 
     private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
@@ -597,13 +597,13 @@ public class crudPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarMousePressed
 
     private void txtConsultarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultarMouseEntered
-        btnConsultar.setBackground(new Color(61,113,169));
-        txtConsultar.setForeground(new Color(183,201,213));
+        btnConsultar.setBackground(new Color(159,165,181));
+        txtConsultar.setForeground(Color.white);
     }//GEN-LAST:event_txtConsultarMouseEntered
 
     private void txtConsultarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultarMouseExited
-        btnConsultar.setBackground(new Color(183,201,213));
-        txtConsultar.setForeground(new Color(61,113,169));
+        btnConsultar.setBackground(new Color(48,18,7));
+        txtConsultar.setForeground(new Color(224,124,48));
     }//GEN-LAST:event_txtConsultarMouseExited
 
     private void txtConsultarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultarMousePressed
@@ -619,13 +619,13 @@ public class crudPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarMousePressed
 
     private void txtEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMouseEntered
-        btnEditar.setBackground(new Color(61,113,169));
-        txtEditar.setForeground(new Color(183,201,213));
+        btnEditar.setBackground(new Color(159,165,181));
+        txtEditar.setForeground(Color.white);
     }//GEN-LAST:event_txtEditarMouseEntered
 
     private void txtEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMouseExited
-        btnEditar.setBackground(new Color(183,201,213));
-        txtEditar.setForeground(new Color(61,113,169));
+        btnEditar.setBackground(new Color(48,18,7));
+        txtEditar.setForeground(new Color(224,124,48));
     }//GEN-LAST:event_txtEditarMouseExited
 
     private void txtEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMousePressed
@@ -641,13 +641,13 @@ public class crudPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarMousePressed
 
     private void txtEnviarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMouseEntered
-        btnEnviar.setBackground(new Color(61,113,169));
-        txtEnviar.setForeground(new Color(183,201,213));
+        btnEnviar.setBackground(new Color(159,165,181));
+        txtEnviar.setForeground(Color.white);
     }//GEN-LAST:event_txtEnviarMouseEntered
 
     private void txtEnviarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMouseExited
-        btnEnviar.setBackground(new Color(183,201,213));
-        txtEnviar.setForeground(new Color(61,113,169));
+        btnEnviar.setBackground(new Color(48,18,7));
+        txtEnviar.setForeground(new Color(224,124,48));
     }//GEN-LAST:event_txtEnviarMouseExited
 
     private void txtEnviarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMousePressed
