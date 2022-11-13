@@ -282,11 +282,12 @@ public class LoginGaming extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "El campo de Password no puede estar vacio.", "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             //Aquí cambia de JFrame
             this.setVisible(false);
             segundoFrame.setVisible(true);
         }
+        segundoFrame.tfUsuario.setText(tfUsuario.getText());
     }//GEN-LAST:event_txtEntrarMousePressed
 
     private void txtEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEntrarMouseExited

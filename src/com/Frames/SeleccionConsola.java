@@ -12,9 +12,10 @@ import java.awt.Color;
  */
 public class SeleccionConsola extends javax.swing.JFrame {
 
+    //LoginGaming primerFrame = new LoginGaming();
     crudSwitch tercerFrame = new crudSwitch();
     crudXbox cuartoFrame = new crudXbox();
-    //crudPlay quintoFrame = new crudPlay();
+    crudPlay quintoFrame = new crudPlay();
     
     int xMouse, yMouse;
     public SeleccionConsola() {
@@ -31,7 +32,6 @@ public class SeleccionConsola extends javax.swing.JFrame {
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
-        txtNombreU = new javax.swing.JLabel();
         txtTexto = new javax.swing.JLabel();
         Header = new javax.swing.JPanel();
         jpExit = new javax.swing.JPanel();
@@ -42,6 +42,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
         txtPlay = new javax.swing.JLabel();
         btnNintendo = new javax.swing.JPanel();
         txtNintendo = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
         imgFondoImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,15 +53,9 @@ public class SeleccionConsola extends javax.swing.JFrame {
         Fondo.setBackground(new java.awt.Color(51, 102, 255));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombreU.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
-        txtNombreU.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtNombreU.setText("name");
-        Fondo.add(txtNombreU, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 230, 60));
-
         txtTexto.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         txtTexto.setText("Selecciona la consola a trabajar");
-        Fondo.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 610, -1));
+        Fondo.add(txtTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 610, -1));
 
         Header.setOpaque(false);
         Header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -245,6 +240,15 @@ public class SeleccionConsola extends javax.swing.JFrame {
 
         Fondo.add(btnNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 160, 60));
 
+        tfUsuario.setEditable(false);
+        tfUsuario.setBackground(new java.awt.Color(3, 65, 156));
+        tfUsuario.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
+        tfUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        tfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfUsuario.setBorder(null);
+        Fondo.add(tfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 320, 60));
+
+        imgFondoImagen.setBackground(new java.awt.Color(3, 65, 156));
         imgFondoImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/three-companies.jpg"))); // NOI18N
         imgFondoImagen.setPreferredSize(new java.awt.Dimension(600, 540));
         Fondo.add(imgFondoImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 560));
@@ -265,6 +269,8 @@ public class SeleccionConsola extends javax.swing.JFrame {
 
     
     private void txtExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitMouseClicked
+        //this.setVisible(false);
+        //primerFrame.setVisible(true);
         System.exit(0);
     }//GEN-LAST:event_txtExitMouseClicked
 
@@ -297,7 +303,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXboxMouseExited
 
     private void txtXboxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtXboxMousePressed
-        this.setVisible(false);
+        //this.setVisible(false);
         cuartoFrame.setVisible(true);
     }//GEN-LAST:event_txtXboxMousePressed
 
@@ -323,7 +329,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
 
     private void txtPlayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPlayMousePressed
         //this.setVisible(false);
-        //quintoFrame.setVisible(true);
+        quintoFrame.setVisible(true);
     }//GEN-LAST:event_txtPlayMousePressed
 
     private void btnPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseExited
@@ -341,7 +347,7 @@ public class SeleccionConsola extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNintendoMouseExited
 
     private void txtNintendoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNintendoMousePressed
-        this.setVisible(false);
+        //this.setVisible(false);
         tercerFrame.setVisible(true);
     }//GEN-LAST:event_txtNintendoMousePressed
 
@@ -392,9 +398,9 @@ public class SeleccionConsola extends javax.swing.JFrame {
     private javax.swing.JPanel btnXbox;
     private javax.swing.JLabel imgFondoImagen;
     private javax.swing.JPanel jpExit;
+    public javax.swing.JTextField tfUsuario;
     private javax.swing.JLabel txtExit;
     private javax.swing.JLabel txtNintendo;
-    private javax.swing.JLabel txtNombreU;
     private javax.swing.JLabel txtPlay;
     private javax.swing.JLabel txtTexto;
     private javax.swing.JLabel txtXbox;
