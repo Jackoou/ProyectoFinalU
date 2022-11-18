@@ -5,28 +5,19 @@
  */
 package com.Models;
 
+import java.util.Date;
+
 /**
  *
  * @author andre
  */
 public class SwitchVO {
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    
     private int id;
     private String Titulo;
     private String Fecha;
+    private String Genero;
     private String Consola;
     private String Formato;
     private String Director;
@@ -34,9 +25,11 @@ public class SwitchVO {
     public SwitchVO() {
     }
 
-    public SwitchVO(String Titulo, String Fecha, String Consola, String Formato, String Director) {
+    public SwitchVO(int id, String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
+        this.id = id;
         this.Titulo = Titulo;
         this.Fecha = Fecha;
+        this.Genero = Genero;
         this.Consola = Consola;
         this.Formato = Formato;
         this.Director = Director;
@@ -112,6 +105,33 @@ public class SwitchVO {
         this.Director = Director;
     }
     
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the Genero
+     */
+    public String getGenero() {
+        return Genero;
+    }
+
+    /**
+     * @param Genero the Genero to set
+     */
+    public void setGenero(String Genero) {
+        this.Genero = Genero;
+    }
     
 }
 

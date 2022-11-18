@@ -5,9 +5,8 @@
  */
 package com.Interfaces;
 
-import com.Connection.BaseConnection;
+import com.Connection.BaseConnection1;
 import com.Models.PlayVO;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,18 +16,20 @@ import java.util.List;
  *
  * @author andre
  */
-public class PlayDAO extends BaseConnection implements IPlayDAO {
+public class PlayDAO extends BaseConnection1 implements IPlayDAO {
 
+    
     @Override
     public boolean insertar_juego(PlayVO juegoPlay) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("insert into Play (titulo,fecha,consola,formato,director) values(?,?,?,?,?)");
+            PreparedStatement sentencia = conexion.prepareStatement("insert into Play (titulo,fecha,consola,genero,formato,director) values(?,?,?,?,?,?)");
             sentencia.setString(1, juegoPlay.getTitulo());
-            sentencia.setDate(2, (Date) juegoPlay.getFecha());
+            sentencia.setString(2, juegoPlay.getFecha());
             sentencia.setString(3, juegoPlay.getConsola());
-            sentencia.setString(4, juegoPlay.getFormato());
-            sentencia.setString(5, juegoPlay.getDirector());
+            sentencia.setString(4, juegoPlay.getGenero());
+            sentencia.setString(5, juegoPlay.getFormato());
+            sentencia.setString(6, juegoPlay.getDirector());
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -43,12 +44,14 @@ public class PlayDAO extends BaseConnection implements IPlayDAO {
     public boolean actualizar_juego(PlayVO juegoPlay) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("update Play set titulo=?, fecha=?, consola=?, formato=?, director=? where id=?");
+            PreparedStatement sentencia = conexion.prepareStatement("update Play set titulo=?, fecha=?, consola=?, genero=?, formato=?, director=? where id=?");
+            sentencia.setInt(0, juegoPlay.getId());
             sentencia.setString(1, juegoPlay.getTitulo());
-            sentencia.setDate(2, (Date) juegoPlay.getFecha());
+            sentencia.setString(2, juegoPlay.getFecha());
             sentencia.setString(3, juegoPlay.getConsola());
-            sentencia.setString(4, juegoPlay.getFormato());
-            sentencia.setString(5, juegoPlay.getDirector());
+            sentencia.setString(4, juegoPlay.getGenero());
+            sentencia.setString(5, juegoPlay.getFormato());
+            sentencia.setString(6, juegoPlay.getDirector());
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -64,7 +67,7 @@ public class PlayDAO extends BaseConnection implements IPlayDAO {
         try {
             conectar();
             PreparedStatement sentencia = conexion.prepareStatement("delete from Play where id=?");
-            sentencia.setInt(0, id);
+            sentencia.setInt(1, id);
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -84,8 +87,9 @@ public class PlayDAO extends BaseConnection implements IPlayDAO {
             while(datos.next()){
                 PlayVO juegoPlay = new PlayVO();
                 juegoPlay.setTitulo(datos.getString("titulo"));
-                juegoPlay.setFecha(datos.getDate("fecha"));
+                juegoPlay.setFecha(datos.getString("fecha"));
                 juegoPlay.setConsola(datos.getString("consola"));
+                juegoPlay.setGenero(datos.getString("genero"));
                 juegoPlay.setFormato(datos.getString("formato"));
                 juegoPlay.setDirector(datos.getString("director"));
                 juegosPlay.add(juegoPlay);
@@ -101,16 +105,19 @@ public class PlayDAO extends BaseConnection implements IPlayDAO {
     @Override
     public PlayVO consultar_por_id(int id) {
         try {
-            List<PlayVO> juegosPlay = new ArrayList();
+
+            //List<PlayVO> juegosPlay = new ArrayList();
             conectar();
             PreparedStatement sentencia = conexion.prepareStatement("select * from Play where id=?");
-            sentencia.setInt(0, id);
+            sentencia.setInt(1, id);
             ResultSet datos = sentencia.executeQuery();
             if(datos.next()){
                 PlayVO juegoPlay = new PlayVO();
+                juegoPlay.setId(datos.getInt("id"));
                 juegoPlay.setTitulo(datos.getString("titulo"));
-                juegoPlay.setFecha(datos.getDate("fecha"));
+                juegoPlay.setFecha(datos.getString("fecha"));
                 juegoPlay.setConsola(datos.getString("consola"));
+                juegoPlay.setGenero(datos.getString("genero"));
                 juegoPlay.setFormato(datos.getString("formato"));
                 juegoPlay.setDirector(datos.getString("director"));
                 desconectar();
@@ -124,5 +131,4 @@ public class PlayDAO extends BaseConnection implements IPlayDAO {
             return null;
         }
     }
-
 }

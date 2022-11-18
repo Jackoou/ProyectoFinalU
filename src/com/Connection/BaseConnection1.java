@@ -12,22 +12,25 @@ import java.sql.DriverManager;
  *
  * @author andre
  */
-public class BaseConnection {
-    protected Connection conexion;
-    protected void conectar(){
+public class BaseConnection1 {
+    
+    public Connection conexion;
+
+    public void conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("driver cargando...");
-            conexion = DriverManager.getConnection("\"jdbc:mysql://localhost:3306/Progamming?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncodig=utf-8\", \"root\", \"root\"");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Progamming?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8","root","Inkisidor123");
         } catch (Exception e) {
-            System.out.println("error "+e);
+            System.out.println("error " + e);
         }
     }
-    protected void desconectar(){
+
+    protected void desconectar() {
         try {
             conexion.close();
         } catch (Exception e) {
-            System.out.println("error "+e);
+            System.out.println("error " + e);
         }
     }
 }

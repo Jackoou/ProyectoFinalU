@@ -5,7 +5,13 @@
  */
 package com.Frames;
 
+import com.Contorllers.SwitchBO;
+import com.Models.SwitchVO;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,12 +20,82 @@ import java.awt.Color;
 public class crudSwitch extends javax.swing.JFrame {
 
     int xMouse, yMouse;
+    String formato;
     
+    private DefaultTableModel modelo;
     
     public crudSwitch() {
         initComponents();
+        llenarTabla();
     }
+    
+    public void llenarTabla() {
 
+        int id = 1;
+
+        modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("TITULO");
+        modelo.addColumn("FECHA");
+        modelo.addColumn("CONSOLA");
+        modelo.addColumn("GENERO");
+        modelo.addColumn("FORMATO");
+        modelo.addColumn("DIRECTOR");
+        TDatos.setModel(modelo);
+
+        List<SwitchVO> juegosSwitch = new SwitchBO().consultar_todos();
+        for (SwitchVO play : juegosSwitch) {
+            String fila[] = {id++ +"", play.getTitulo(), play.getFecha(), play.getConsola(), play.getGenero(), play.getFormato(), play.getDirector()};
+            modelo.addRow(fila);
+        }
+        TDatos.getColumnModel().getColumn(0).setPreferredWidth(3);
+        TDatos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        TDatos.getColumnModel().getColumn(2).setPreferredWidth(70);
+        TDatos.getColumnModel().getColumn(3).setPreferredWidth(80);
+        TDatos.getColumnModel().getColumn(4).setPreferredWidth(55);
+        TDatos.getColumnModel().getColumn(5).setPreferredWidth(80);
+        
+        
+    }
+    
+    public void limpiar() {
+        tfTitulo.setText(null);
+        txtDate.setText("");
+        cbConsola.setSelectedIndex(0);
+        cbGenero.setSelectedIndex(0);
+        SeleccionFormato.clearSelection();
+        tfDirector.setText(null);
+    }
+    
+    private String SeleccionarFormato(){
+        
+        if(rbColeccionista.isSelected()){
+            formato = rbColeccionista.getText();
+        }
+        if(rbDigital.isSelected()){
+            formato = rbDigital.getText();
+        }
+        if(rbFisico.isSelected()){
+            formato = rbFisico.getText();
+        }
+        return formato;
+    }
+    
+    private boolean RetornarFormato() {
+        SwitchVO Switch = new SwitchBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+        boolean eleccion = false;
+        if (Switch.getFormato().equals("Fisico")) {
+            rbFisico.setSelected(true);
+            eleccion = true;
+        } else if (Switch.getFormato().equals("Digital")) {
+            rbDigital.setSelected(true);
+            eleccion = true;
+        } else if (Switch.getFormato().equals("Coleccionista")) {
+            rbColeccionista.setSelected(true);
+            eleccion = true;
+        }
+        return eleccion;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,38 +105,42 @@ public class crudSwitch extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SeleccionFormato = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         jpExit = new javax.swing.JPanel();
         txtExit = new javax.swing.JLabel();
         jPBotones = new javax.swing.JPanel();
-        btnNuevo = new javax.swing.JPanel();
-        txtNuevo = new javax.swing.JLabel();
+        btnCargarDatos = new javax.swing.JPanel();
+        txtCargarDatos = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JPanel();
         txtEliminar = new javax.swing.JLabel();
-        btnConsultar = new javax.swing.JPanel();
-        txtConsultar = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JPanel();
-        txtEditar = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JPanel();
+        txtActualizar = new javax.swing.JLabel();
         btnEnviar = new javax.swing.JPanel();
-        txtEnviar = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        txtInsertar = new javax.swing.JLabel();
         jpIngresarDatos = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         tfTitulo = new javax.swing.JTextField();
         txtPublic = new javax.swing.JLabel();
         txtConsola = new javax.swing.JLabel();
-        tfConsola = new javax.swing.JTextField();
         txtGenero = new javax.swing.JLabel();
         txtFormato = new javax.swing.JLabel();
         cbGenero = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
         txtDirector = new javax.swing.JLabel();
         tfDirector = new javax.swing.JTextField();
-        jDateSwitch = new com.toedter.calendar.JDateChooser();
+        cbConsola = new javax.swing.JComboBox<>();
+        rbDigital = new javax.swing.JRadioButton();
+        rbFisico = new javax.swing.JRadioButton();
+        rbColeccionista = new javax.swing.JRadioButton();
+        txtDate = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TDatos = new javax.swing.JTable();
+        jpID1 = new javax.swing.JPanel();
+        tfId = new javax.swing.JTextField();
+        lbId = new javax.swing.JLabel();
+        btnConsultar = new javax.swing.JPanel();
+        txtConsultar = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -140,46 +220,44 @@ public class crudSwitch extends javax.swing.JFrame {
 
         jPBotones.setOpaque(false);
 
-        btnNuevo.setBackground(new java.awt.Color(180, 19, 25));
-        btnNuevo.setForeground(new java.awt.Color(49, 78, 146));
-        btnNuevo.setToolTipText("");
-        btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCargarDatos.setBackground(new java.awt.Color(180, 19, 25));
+        btnCargarDatos.setForeground(new java.awt.Color(49, 78, 146));
+        btnCargarDatos.setToolTipText("");
+        btnCargarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNuevoMouseExited(evt);
+                btnCargarDatosMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnNuevoMousePressed(evt);
+                btnCargarDatosMousePressed(evt);
             }
         });
 
-        txtNuevo.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        txtNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtNuevo.setText("Nuevo");
-        txtNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCargarDatos.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        txtCargarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        txtCargarDatos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtCargarDatos.setText("Cargar Datos");
+        txtCargarDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtCargarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtNuevoMouseEntered(evt);
+                txtCargarDatosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtNuevoMouseExited(evt);
+                txtCargarDatosMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtNuevoMousePressed(evt);
+                txtCargarDatosMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout btnNuevoLayout = new javax.swing.GroupLayout(btnNuevo);
-        btnNuevo.setLayout(btnNuevoLayout);
-        btnNuevoLayout.setHorizontalGroup(
-            btnNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnNuevoLayout.createSequentialGroup()
-                .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout btnCargarDatosLayout = new javax.swing.GroupLayout(btnCargarDatos);
+        btnCargarDatos.setLayout(btnCargarDatosLayout);
+        btnCargarDatosLayout.setHorizontalGroup(
+            btnCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtCargarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
         );
-        btnNuevoLayout.setVerticalGroup(
-            btnNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        btnCargarDatosLayout.setVerticalGroup(
+            btnCargarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtCargarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         btnEliminar.setBackground(new java.awt.Color(180, 19, 25));
@@ -224,6 +302,271 @@ public class crudSwitch extends javax.swing.JFrame {
             .addComponent(txtEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
+        btnActualizar.setBackground(new java.awt.Color(180, 19, 25));
+        btnActualizar.setForeground(new java.awt.Color(49, 78, 146));
+        btnActualizar.setToolTipText("");
+        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnActualizarMousePressed(evt);
+            }
+        });
+
+        txtActualizar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        txtActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        txtActualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtActualizar.setText("Actualizar");
+        txtActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtActualizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtActualizarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtActualizarMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnActualizarLayout = new javax.swing.GroupLayout(btnActualizar);
+        btnActualizar.setLayout(btnActualizarLayout);
+        btnActualizarLayout.setHorizontalGroup(
+            btnActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnActualizarLayout.createSequentialGroup()
+                .addComponent(txtActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        btnActualizarLayout.setVerticalGroup(
+            btnActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        btnEnviar.setBackground(new java.awt.Color(180, 19, 25));
+        btnEnviar.setForeground(new java.awt.Color(49, 78, 146));
+        btnEnviar.setToolTipText("");
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEnviarMousePressed(evt);
+            }
+        });
+
+        txtInsertar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        txtInsertar.setForeground(new java.awt.Color(255, 255, 255));
+        txtInsertar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtInsertar.setText("Insertar");
+        txtInsertar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtInsertar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtInsertarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtInsertarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtInsertarMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnEnviarLayout = new javax.swing.GroupLayout(btnEnviar);
+        btnEnviar.setLayout(btnEnviarLayout);
+        btnEnviarLayout.setHorizontalGroup(
+            btnEnviarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEnviarLayout.createSequentialGroup()
+                .addComponent(txtInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        btnEnviarLayout.setVerticalGroup(
+            btnEnviarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPBotonesLayout = new javax.swing.GroupLayout(jPBotones);
+        jPBotones.setLayout(jPBotonesLayout);
+        jPBotonesLayout.setHorizontalGroup(
+            jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBotonesLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPBotonesLayout.setVerticalGroup(
+            jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBotonesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71))
+        );
+
+        jPanel1.add(jPBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 610, 70));
+
+        jpIngresarDatos.setOpaque(false);
+
+        txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtTitulo.setText("Titulo");
+
+        tfTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        txtPublic.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtPublic.setText("Fecha Publicación");
+
+        txtConsola.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtConsola.setText("Consola");
+
+        txtGenero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtGenero.setText("Genero");
+
+        txtFormato.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtFormato.setText("Formato");
+
+        cbGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "RPG", "Aventuras", "Acción", "Carreras", "Musical" }));
+        cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        txtDirector.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtDirector.setText("Director");
+
+        tfDirector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        cbConsola.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbConsola.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Game Boy", "Nintendo 64", "Nintendo GameCube", "Nintendo DS", "Nintendo Wii", "Nintendo Switch" }));
+        cbConsola.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        SeleccionFormato.add(rbDigital);
+        rbDigital.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbDigital.setForeground(new java.awt.Color(255, 255, 255));
+        rbDigital.setText("Digital");
+        rbDigital.setOpaque(false);
+
+        SeleccionFormato.add(rbFisico);
+        rbFisico.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbFisico.setText("Fisico");
+        rbFisico.setOpaque(false);
+
+        SeleccionFormato.add(rbColeccionista);
+        rbColeccionista.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbColeccionista.setForeground(new java.awt.Color(255, 255, 255));
+        rbColeccionista.setText("Coleccionista");
+        rbColeccionista.setOpaque(false);
+
+        txtDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpIngresarDatosLayout = new javax.swing.GroupLayout(jpIngresarDatos);
+        jpIngresarDatos.setLayout(jpIngresarDatosLayout);
+        jpIngresarDatosLayout.setHorizontalGroup(
+            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(txtDirector)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(txtFormato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbDigital)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbFisico)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbColeccionista)
+                        .addGap(28, 28, 28))
+                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                                .addComponent(txtPublic)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtGenero)
+                                    .addComponent(txtTitulo)
+                                    .addComponent(txtConsola))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfTitulo)
+                                    .addComponent(cbGenero, 0, 213, Short.MAX_VALUE)
+                                    .addComponent(cbConsola, 0, 213, Short.MAX_VALUE))))
+                        .addGap(40, 40, 40))))
+        );
+        jpIngresarDatosLayout.setVerticalGroup(
+            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTitulo)
+                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPublic)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConsola)
+                    .addComponent(cbConsola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGenero)
+                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbDigital)
+                        .addComponent(rbFisico)
+                        .addComponent(rbColeccionista))
+                    .addComponent(txtFormato))
+                .addGap(24, 24, 24)
+                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDirector)
+                    .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jpIngresarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 490, 300));
+
+        TDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TDatos);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 740, 110));
+
+        jpID1.setOpaque(false);
+
+        tfId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        lbId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbId.setText("Ingrese el Id");
+
         btnConsultar.setBackground(new java.awt.Color(180, 19, 25));
         btnConsultar.setForeground(new java.awt.Color(49, 78, 146));
         btnConsultar.setToolTipText("");
@@ -266,256 +609,36 @@ public class crudSwitch extends javax.swing.JFrame {
             .addComponent(txtConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        btnEditar.setBackground(new java.awt.Color(180, 19, 25));
-        btnEditar.setForeground(new java.awt.Color(49, 78, 146));
-        btnEditar.setToolTipText("");
-        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEditarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnEditarMousePressed(evt);
-            }
-        });
-
-        txtEditar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtEditar.setForeground(new java.awt.Color(255, 255, 255));
-        txtEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtEditar.setText("Editar");
-        txtEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtEditarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtEditarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtEditarMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnEditarLayout = new javax.swing.GroupLayout(btnEditar);
-        btnEditar.setLayout(btnEditarLayout);
-        btnEditarLayout.setHorizontalGroup(
-            btnEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEditarLayout.createSequentialGroup()
-                .addComponent(txtEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        btnEditarLayout.setVerticalGroup(
-            btnEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        btnEnviar.setBackground(new java.awt.Color(180, 19, 25));
-        btnEnviar.setForeground(new java.awt.Color(49, 78, 146));
-        btnEnviar.setToolTipText("");
-        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEnviarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnEnviarMousePressed(evt);
-            }
-        });
-
-        txtEnviar.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
-        txtEnviar.setForeground(new java.awt.Color(255, 255, 255));
-        txtEnviar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtEnviar.setText("Guardar");
-        txtEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtEnviarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtEnviarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtEnviarMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnEnviarLayout = new javax.swing.GroupLayout(btnEnviar);
-        btnEnviar.setLayout(btnEnviarLayout);
-        btnEnviarLayout.setHorizontalGroup(
-            btnEnviarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEnviarLayout.createSequentialGroup()
-                .addComponent(txtEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        btnEnviarLayout.setVerticalGroup(
-            btnEnviarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPBotonesLayout = new javax.swing.GroupLayout(jPBotones);
-        jPBotones.setLayout(jPBotonesLayout);
-        jPBotonesLayout.setHorizontalGroup(
-            jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPBotonesLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBotonesLayout.createSequentialGroup()
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBotonesLayout.createSequentialGroup()
-                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
-        );
-        jPBotonesLayout.setVerticalGroup(
-            jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBotonesLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-
-        jPanel1.add(jPBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 450, 130));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "sdfsdf", "sdfsdf", "sdfsd", "fsdf", "sdfs", "dffg", "dfg", "df", "gdf", "gd", "fgdf" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setEnabled(false);
-        jScrollPane1.setViewportView(jList1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 320, 150));
-
-        jpIngresarDatos.setOpaque(false);
-
-        txtTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtTitulo.setText("Titulo");
-
-        tfTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtPublic.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtPublic.setText("Fecha Publicación");
-
-        txtConsola.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtConsola.setText("Consola");
-
-        tfConsola.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtGenero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtGenero.setText("Genero");
-
-        txtFormato.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtFormato.setText("Formato");
-
-        cbGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "RPG", "Aventuras", "Acción", "Infantil", "Musical" }));
-        cbGenero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Digital");
-
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Físico");
-
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setText("Coleccionista");
-
-        txtDirector.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtDirector.setText("Director");
-
-        tfDirector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jDateSwitch.setDateFormatString("dd-MM-yyyy");
-
-        javax.swing.GroupLayout jpIngresarDatosLayout = new javax.swing.GroupLayout(jpIngresarDatos);
-        jpIngresarDatos.setLayout(jpIngresarDatosLayout);
-        jpIngresarDatosLayout.setHorizontalGroup(
-            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtGenero)
-                            .addComponent(txtTitulo)
-                            .addComponent(txtConsola)
-                            .addComponent(txtPublic)
-                            .addComponent(txtFormato))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
-                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox3)
-                                .addGap(21, 21, 21))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIngresarDatosLayout.createSequentialGroup()
-                                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfTitulo)
-                                    .addComponent(cbGenero, 0, 213, Short.MAX_VALUE)
-                                    .addComponent(tfConsola)
-                                    .addComponent(jDateSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(40, 40, 40))))
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(txtDirector)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
-        );
-        jpIngresarDatosLayout.setVerticalGroup(
-            jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpIngresarDatosLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpID1Layout = new javax.swing.GroupLayout(jpID1);
+        jpID1.setLayout(jpID1Layout);
+        jpID1Layout.setHorizontalGroup(
+            jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpID1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTitulo)
-                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPublic)
-                    .addComponent(jDateSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtConsola)
-                    .addComponent(tfConsola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGenero)
-                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtFormato))
-                    .addGroup(jpIngresarDatosLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox3))))
-                .addGap(18, 18, 18)
-                .addGroup(jpIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDirector)
-                    .addComponent(tfDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jpID1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpID1Layout.setVerticalGroup(
+            jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpID1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfId))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
-        jPanel1.add(jpIngresarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 490, 300));
+        jPanel1.add(jpID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 340, 250, 110));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/pelicula-de-super-mario-bros.jpg"))); // NOI18N
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/pelicula-de-super-mario-bros (1).jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -558,27 +681,39 @@ public class crudSwitch extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_HeaderMousePressed
 
-    private void txtNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMouseEntered
-        btnNuevo.setBackground(new Color(58,162,49));
-        txtNuevo.setForeground(Color.white);
-    }//GEN-LAST:event_txtNuevoMouseEntered
+    private void txtCargarDatosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCargarDatosMouseEntered
+        btnCargarDatos.setBackground(new Color(58,162,49));
+        txtCargarDatos.setForeground(Color.white);
+    }//GEN-LAST:event_txtCargarDatosMouseEntered
 
-    private void txtNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMouseExited
-        btnNuevo.setBackground(new Color(180,19,25));
-        txtNuevo.setForeground(Color.white);
-    }//GEN-LAST:event_txtNuevoMouseExited
+    private void txtCargarDatosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCargarDatosMouseExited
+        btnCargarDatos.setBackground(new Color(180,19,25));
+        txtCargarDatos.setForeground(Color.white);
+    }//GEN-LAST:event_txtCargarDatosMouseExited
 
-    private void txtNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNuevoMousePressed
+    private void txtCargarDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCargarDatosMousePressed
+        try {
+            SwitchVO Switch = new SwitchBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+
+            tfTitulo.setText(Switch.getTitulo());
+            txtDate.setText(Switch.getFecha());
+            cbConsola.setSelectedItem(Switch.getConsola());
+            cbGenero.setSelectedItem(Switch.getGenero());
+            RetornarFormato();
+            tfDirector.setText(Switch.getDirector());
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Estudiante no encontrado");
+        }    
+    }//GEN-LAST:event_txtCargarDatosMousePressed
+
+    private void btnCargarDatosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarDatosMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNuevoMousePressed
+    }//GEN-LAST:event_btnCargarDatosMouseExited
 
-    private void btnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseExited
+    private void btnCargarDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarDatosMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoMouseExited
-
-    private void btnNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoMousePressed
+    }//GEN-LAST:event_btnCargarDatosMousePressed
 
     private void txtEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMouseEntered
         btnEliminar.setBackground(new Color(58,162,49));
@@ -591,7 +726,18 @@ public class crudSwitch extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEliminarMouseExited
 
     private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
-        // TODO add your handling code here:
+        try {
+            SwitchVO Switch = new SwitchVO();
+            Switch.setId(Integer.parseInt(tfId.getText()));
+            boolean resultado = new SwitchBO().eliminar_juego(Switch);
+            String mensaje = resultado ? "el estudiante fue eliminado" : "el estudiante no fue eliminado";
+
+            //la sentencia this se usa para pasar un valor
+            JOptionPane.showMessageDialog(this, mensaje);
+            tfId.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error " + e);
+        }
     }//GEN-LAST:event_txtEliminarMousePressed
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
@@ -613,7 +759,21 @@ public class crudSwitch extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConsultarMouseExited
 
     private void txtConsultarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultarMousePressed
-        // TODO add your handling code here:
+        modelo.setRowCount(0);//Resetear Filas
+        List<SwitchVO> juegosSwitch = null;
+        if (tfId.getText().equals("")) {
+            llenarTabla();
+        } else {
+            juegosSwitch = new ArrayList();
+            int id = Integer.parseInt(tfId.getText());
+            juegosSwitch.add(new SwitchBO().consultar_por_id(id));
+
+            for (SwitchVO Switch : juegosSwitch){
+            String fila[] = {id++ + "", Switch.getTitulo(), Switch.getFecha(), Switch.getConsola(), Switch.getGenero(), Switch.getFormato(), Switch.getDirector()};
+            modelo.addRow(fila);
+            tfId.setText("");
+        }
+        }
     }//GEN-LAST:event_txtConsultarMousePressed
 
     private void btnConsultarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseExited
@@ -624,41 +784,75 @@ public class crudSwitch extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarMousePressed
 
-    private void txtEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMouseEntered
-        btnEditar.setBackground(new Color(58,162,49));
-        txtEditar.setForeground(Color.white);
-    }//GEN-LAST:event_txtEditarMouseEntered
+    private void txtActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtActualizarMouseEntered
+        btnActualizar.setBackground(new Color(58,162,49));
+        txtActualizar.setForeground(Color.white);
+    }//GEN-LAST:event_txtActualizarMouseEntered
 
-    private void txtEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMouseExited
-        btnEditar.setBackground(new Color(180,19,25));
-        txtEditar.setForeground(Color.white);
-    }//GEN-LAST:event_txtEditarMouseExited
+    private void txtActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtActualizarMouseExited
+        btnActualizar.setBackground(new Color(180,19,25));
+        txtActualizar.setForeground(Color.white);
+    }//GEN-LAST:event_txtActualizarMouseExited
 
-    private void txtEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEditarMousePressed
+    private void txtActualizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtActualizarMousePressed
+        try {
+            SwitchVO nuevo = new SwitchVO();
+            nuevo.setTitulo(tfTitulo.getText());
+            nuevo.setFecha(txtDate.getText());
+            nuevo.setConsola(cbConsola.getSelectedItem().toString());
+            nuevo.setGenero(cbGenero.getSelectedItem().toString());
+            nuevo.setFormato(SeleccionarFormato());
+            nuevo.setDirector(tfDirector.getText());
+            
+
+            //carga los datos a través de 'nuevo'
+            boolean resultado = new SwitchBO().actualizar_juego(nuevo);
+            String mensaje = resultado ? "El juego fue actualizado correctamente" : "El juego no pudo ser actualizado";
+            //la sentencia 'this' se usa para pasar un valor a la misma clase
+            JOptionPane.showMessageDialog(this, mensaje);
+            //limpiar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error " + e);
+        }
+    }//GEN-LAST:event_txtActualizarMousePressed
+
+    private void btnActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEditarMousePressed
+    }//GEN-LAST:event_btnActualizarMouseExited
 
-    private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
+    private void btnActualizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarMouseExited
+    }//GEN-LAST:event_btnActualizarMousePressed
 
-    private void btnEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarMousePressed
-
-    private void txtEnviarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMouseEntered
+    private void txtInsertarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInsertarMouseEntered
         btnEnviar.setBackground(new Color(58,162,49));
-        txtEnviar.setForeground(Color.white);
-    }//GEN-LAST:event_txtEnviarMouseEntered
+        txtInsertar.setForeground(Color.white);
+    }//GEN-LAST:event_txtInsertarMouseEntered
 
-    private void txtEnviarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMouseExited
+    private void txtInsertarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInsertarMouseExited
         btnEnviar.setBackground(new Color(180,19,25));
-        txtEnviar.setForeground(Color.white);
-    }//GEN-LAST:event_txtEnviarMouseExited
+        txtInsertar.setForeground(Color.white);
+    }//GEN-LAST:event_txtInsertarMouseExited
 
-    private void txtEnviarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnviarMousePressed
-
-    }//GEN-LAST:event_txtEnviarMousePressed
+    private void txtInsertarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtInsertarMousePressed
+        try {
+            SwitchVO nuevo = new SwitchVO();
+            nuevo.setTitulo(tfTitulo.getText());
+            nuevo.setConsola(cbConsola.getSelectedItem().toString());
+            nuevo.setGenero(cbGenero.getSelectedItem().toString());
+            nuevo.setFormato(SeleccionarFormato());
+            nuevo.setDirector(tfDirector.getText());
+            nuevo.setFecha(txtDate.getText());
+            //carga los datos a través de 'nuevo'
+            boolean resultado = new SwitchBO().insertar_juego(nuevo);
+            String mensaje = resultado?"El juego fue registrado correctamente":"El juego no fue registrado";
+            //la sentencia 'this' se usa para pasar un valor a la misma clase
+            JOptionPane.showMessageDialog(this, mensaje);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error "+e);
+        }
+    }//GEN-LAST:event_txtInsertarMousePressed
 
     private void btnEnviarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseExited
 
@@ -667,6 +861,10 @@ public class crudSwitch extends javax.swing.JFrame {
     private void btnEnviarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMousePressed
 
     }//GEN-LAST:event_btnEnviarMousePressed
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -706,35 +904,39 @@ public class crudSwitch extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
     private javax.swing.JPanel Header;
+    private javax.swing.ButtonGroup SeleccionFormato;
+    private javax.swing.JTable TDatos;
+    private javax.swing.JPanel btnActualizar;
+    private javax.swing.JPanel btnCargarDatos;
     private javax.swing.JPanel btnConsultar;
-    private javax.swing.JPanel btnEditar;
     private javax.swing.JPanel btnEliminar;
     private javax.swing.JPanel btnEnviar;
-    private javax.swing.JPanel btnNuevo;
+    private javax.swing.JComboBox<String> cbConsola;
     private javax.swing.JComboBox<String> cbGenero;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private com.toedter.calendar.JDateChooser jDateSwitch;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPBotones;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpExit;
+    private javax.swing.JPanel jpID1;
     private javax.swing.JPanel jpIngresarDatos;
-    private javax.swing.JTextField tfConsola;
+    private javax.swing.JLabel lbId;
+    private javax.swing.JRadioButton rbColeccionista;
+    private javax.swing.JRadioButton rbDigital;
+    private javax.swing.JRadioButton rbFisico;
     private javax.swing.JTextField tfDirector;
+    private javax.swing.JTextField tfId;
     private javax.swing.JTextField tfTitulo;
+    private javax.swing.JLabel txtActualizar;
+    private javax.swing.JLabel txtCargarDatos;
     private javax.swing.JLabel txtConsola;
     private javax.swing.JLabel txtConsultar;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JLabel txtDirector;
-    private javax.swing.JLabel txtEditar;
     private javax.swing.JLabel txtEliminar;
-    private javax.swing.JLabel txtEnviar;
     private javax.swing.JLabel txtExit;
     private javax.swing.JLabel txtFormato;
     private javax.swing.JLabel txtGenero;
-    private javax.swing.JLabel txtNuevo;
+    private javax.swing.JLabel txtInsertar;
     private javax.swing.JLabel txtPublic;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

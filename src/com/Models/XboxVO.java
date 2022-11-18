@@ -14,7 +14,8 @@ import java.util.Date;
 public class XboxVO {
     private int id;
     private String Titulo;
-    private Date Fecha;
+    private String Fecha;
+    private String Genero;
     private String Consola;
     private String Formato;
     private String Director;
@@ -22,9 +23,11 @@ public class XboxVO {
     public XboxVO() {
     }
 
-    public XboxVO(String Titulo, Date Fecha, String Consola, String Formato, String Director) {
+    public XboxVO(int id, String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
+        this.id = id;
         this.Titulo = Titulo;
         this.Fecha = Fecha;
+        this.Genero = Genero;
         this.Consola = Consola;
         this.Formato = Formato;
         this.Director = Director;
@@ -47,14 +50,14 @@ public class XboxVO {
     /**
      * @return the Fecha
      */
-    public Date getFecha() {
+    public String getFecha() {
         return Fecha;
     }
 
     /**
      * @param Fecha the Fecha to set
      */
-    public void setFecha(Date Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 
@@ -112,6 +115,20 @@ public class XboxVO {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the Genero
+     */
+    public String getGenero() {
+        return Genero;
+    }
+
+    /**
+     * @param Genero the Genero to set
+     */
+    public void setGenero(String Genero) {
+        this.Genero = Genero;
     }
     
     
