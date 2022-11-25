@@ -15,7 +15,7 @@ import java.util.List;
 public interface ISwitchDAO {
     public boolean insertar_juego(SwitchVO juegoSwitch);
     public boolean actualizar_juego(SwitchVO juegoSwitch);
-    public boolean eliminar_juego(int id);
+    public boolean eliminar_juego(String titulo);
     public List<SwitchVO> consultar_todos();
-    public SwitchVO consultar_por_id(int id);
+    public SwitchVO consultar_por_titulo(String titulo);
 }

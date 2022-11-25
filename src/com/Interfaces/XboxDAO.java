@@ -43,13 +43,14 @@ public class XboxDAO extends BaseConnection1 implements IXboxDAO{
     public boolean actualizar_juego(XboxVO juegoXbox) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("update Xbox set titulo=?, fecha=?, consola=?, genero=?, formato=?, director=? where id=?");
-            sentencia.setString(1, juegoXbox.getTitulo());
-            sentencia.setString(2, juegoXbox.getFecha());
-            sentencia.setString(3, juegoXbox.getConsola());
-            sentencia.setString(4, juegoXbox.getGenero());
-            sentencia.setString(5, juegoXbox.getFormato());
-            sentencia.setString(6, juegoXbox.getDirector());
+            PreparedStatement sentencia = conexion.prepareStatement("update Xbox set fecha=?, consola=?, genero=?, formato=?, director=? where titulo=?");
+            
+            sentencia.setString(1, juegoXbox.getFecha());
+            sentencia.setString(2, juegoXbox.getConsola());
+            sentencia.setString(3, juegoXbox.getGenero());
+            sentencia.setString(4, juegoXbox.getFormato());
+            sentencia.setString(5, juegoXbox.getDirector());
+            sentencia.setString(6, juegoXbox.getTitulo());
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -61,11 +62,11 @@ public class XboxDAO extends BaseConnection1 implements IXboxDAO{
     }
 
     @Override
-    public boolean eliminar_juego(int id) {
+    public boolean eliminar_juego(String titulo) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("delete from Xbox where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("delete from Xbox where titulo=?");
+            sentencia.setString(1, titulo);
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -101,12 +102,12 @@ public class XboxDAO extends BaseConnection1 implements IXboxDAO{
     }
 
     @Override
-    public XboxVO consultar_por_id(int id) {
+    public XboxVO consultar_por_titulo(String titulo) {
         try {
-            //List<XboxVO> juegosXbox = new ArrayList();
+            List<XboxVO> juegosXbox = new ArrayList();
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("select * from Xbox where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("select * from Xbox where titulo=?");
+            sentencia.setString(1, titulo);
             ResultSet datos = sentencia.executeQuery();
             if(datos.next()){
                 XboxVO juegoXbox = new XboxVO();

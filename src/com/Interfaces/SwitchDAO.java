@@ -44,14 +44,14 @@ public class SwitchDAO extends BaseConnection1 implements ISwitchDAO{
     public boolean actualizar_juego(SwitchVO juegoSwitch) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("update Switch set titulo=?, fecha=?, consola=?, genero=? formato=?, director=? where id=?");
+            PreparedStatement sentencia = conexion.prepareStatement("update Switch set fecha=?, consola=?, genero=?, formato=?, director=? where titulo=?");
             
-            sentencia.setString(1, juegoSwitch.getTitulo());
-            sentencia.setString(2, juegoSwitch.getFecha());
-            sentencia.setString(3, juegoSwitch.getConsola());
-            sentencia.setString(4, juegoSwitch.getGenero());
-            sentencia.setString(5, juegoSwitch.getFormato());
-            sentencia.setString(6, juegoSwitch.getDirector());
+            sentencia.setString(1, juegoSwitch.getFecha());
+            sentencia.setString(2, juegoSwitch.getConsola());
+            sentencia.setString(3, juegoSwitch.getGenero());
+            sentencia.setString(4, juegoSwitch.getFormato());
+            sentencia.setString(5, juegoSwitch.getDirector());
+            sentencia.setString(6, juegoSwitch.getTitulo());
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -63,11 +63,11 @@ public class SwitchDAO extends BaseConnection1 implements ISwitchDAO{
     }
 
     @Override
-    public boolean eliminar_juego(int id) {
+    public boolean eliminar_juego(String titulo) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("delete from Switch where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("delete from Switch where titulo=?");
+            sentencia.setString(1, titulo);
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -103,12 +103,12 @@ public class SwitchDAO extends BaseConnection1 implements ISwitchDAO{
     }
 
     @Override
-    public SwitchVO consultar_por_id(int id) {
+    public SwitchVO consultar_por_titulo(String titulo) {
         try {
             List<SwitchVO> juegosSwitch = new ArrayList();
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("select * from Switch where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("select * from Switch where titulo=?");
+            sentencia.setString(1, titulo);
             ResultSet datos = sentencia.executeQuery();
             if(datos.next()){
                 SwitchVO juegoSwitch = new SwitchVO();

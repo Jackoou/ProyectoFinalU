@@ -15,7 +15,7 @@ import java.util.List;
 public interface IXboxDAO {
     public boolean insertar_juego(XboxVO juegoXbox);
     public boolean actualizar_juego(XboxVO juegoXbox);
-    public boolean eliminar_juego(int id);
+    public boolean eliminar_juego(String titulo);
     public List<XboxVO> consultar_todos(); 
-    public XboxVO consultar_por_id(int id);
+    public XboxVO consultar_por_titulo(String titulo);
 }

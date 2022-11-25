@@ -15,7 +15,7 @@ import java.util.List;
 public interface IPlayDAO {
     public boolean insertar_juego(PlayVO juegoPlay);
     public boolean actualizar_juego(PlayVO juegoPlay);
-    public boolean eliminar_juego(int id);
+    public boolean eliminar_juego(String titulo);
     public List<PlayVO> consultar_todos();
-    public PlayVO consultar_por_id(int id);
+    public PlayVO consultar_por_titulo(String titulo);
 }

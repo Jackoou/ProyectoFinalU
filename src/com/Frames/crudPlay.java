@@ -32,10 +32,9 @@ public class crudPlay extends javax.swing.JFrame {
 
     public void llenarTabla() {
 
-        int id = 1;
+        
 
         modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
         modelo.addColumn("TITULO");
         modelo.addColumn("FECHA");
         modelo.addColumn("CONSOLA");
@@ -46,15 +45,15 @@ public class crudPlay extends javax.swing.JFrame {
 
         List<PlayVO> juegosPlay = new PlayBO().consultar_todos();
         for (PlayVO play : juegosPlay) {
-            String fila[] = {id++ +"", play.getTitulo(), play.getFecha(), play.getConsola(), play.getGenero(), play.getFormato(), play.getDirector()};
+            String fila[] = {play.getTitulo(), play.getFecha(), play.getConsola(), play.getGenero(), play.getFormato(), play.getDirector()};
             modelo.addRow(fila);
         }
-        TDatos.getColumnModel().getColumn(0).setPreferredWidth(3);
-        TDatos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        TDatos.getColumnModel().getColumn(2).setPreferredWidth(70);
-        TDatos.getColumnModel().getColumn(3).setPreferredWidth(80);
-        TDatos.getColumnModel().getColumn(4).setPreferredWidth(55);
-        TDatos.getColumnModel().getColumn(5).setPreferredWidth(80);
+        
+        TDatos.getColumnModel().getColumn(0).setPreferredWidth(200);
+        TDatos.getColumnModel().getColumn(1).setPreferredWidth(70);
+        TDatos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        TDatos.getColumnModel().getColumn(3).setPreferredWidth(55);
+        TDatos.getColumnModel().getColumn(4).setPreferredWidth(80);
         
         
     }
@@ -83,7 +82,7 @@ public class crudPlay extends javax.swing.JFrame {
     }
 
     private boolean RetornarFormato() {
-        PlayVO play = new PlayBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+        PlayVO play = new PlayBO().consultar_por_titulo(tfTitulo.getText());
         boolean eleccion = false;
         if (play.getFormato().equals("Fisico")) {
             rbFisico.setSelected(true);
@@ -137,12 +136,11 @@ public class crudPlay extends javax.swing.JFrame {
         btnEnviar = new javax.swing.JPanel();
         txtInsertar = new javax.swing.JLabel();
         jpID1 = new javax.swing.JPanel();
-        tfId = new javax.swing.JTextField();
-        lbId = new javax.swing.JLabel();
         btnConsultar1 = new javax.swing.JPanel();
         txtConsultar1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TDatos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
         tfConverFecha = new javax.swing.JTextField();
 
@@ -543,12 +541,6 @@ public class crudPlay extends javax.swing.JFrame {
 
         jpID1.setOpaque(false);
 
-        tfId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbId.setForeground(new java.awt.Color(255, 255, 255));
-        lbId.setText("Ingrese el Id");
-
         btnConsultar1.setBackground(new java.awt.Color(48, 18, 7));
         btnConsultar1.setForeground(new java.awt.Color(49, 78, 146));
         btnConsultar1.setToolTipText("");
@@ -595,30 +587,20 @@ public class crudPlay extends javax.swing.JFrame {
         jpID1.setLayout(jpID1Layout);
         jpID1Layout.setHorizontalGroup(
             jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpID1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpID1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(btnConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
         jpID1Layout.setVerticalGroup(
             jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpID1Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jpID1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfId))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btnConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        jPanel1.add(jpID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 370, 250, 110));
+        jPanel1.add(jpID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 400, 250, 80));
 
         TDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -634,6 +616,9 @@ public class crudPlay extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TDatos);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 740, 110));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/645-6457086_logo-de-los-videojuegos-hd-png-download.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 40, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/16226731252609.jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -709,7 +694,7 @@ public class crudPlay extends javax.swing.JFrame {
     private void txtCargarDatosMousePressed(java.awt.event.MouseEvent evt) {
 
         try {
-            PlayVO play = new PlayBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+            PlayVO play = new PlayBO().consultar_por_titulo(tfTitulo.getText());
 
             tfTitulo.setText(play.getTitulo());
             txtDate.setText(play.getFecha());
@@ -719,7 +704,7 @@ public class crudPlay extends javax.swing.JFrame {
             tfDirector.setText(play.getDirector());
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Estudiante no encontrado");
+            JOptionPane.showMessageDialog(this, "Juego no encontrado");
         }
     }
     private void btnCargarDatosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarDatosMouseExited
@@ -743,13 +728,13 @@ public class crudPlay extends javax.swing.JFrame {
     private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
         try {
             PlayVO play = new PlayVO();
-            play.setId(Integer.parseInt(tfId.getText()));
+            play.setTitulo(tfTitulo.getText());
             boolean resultado = new PlayBO().eliminar_juego(play);
-            String mensaje = resultado ? "el estudiante fue eliminado" : "el estudiante no fue eliminado";
+            String mensaje = resultado ? "el juego fue eliminado satisfactoriamente" : "el juego no pudo ser eliminado";
 
             //la sentencia this se usa para pasar un valor
             JOptionPane.showMessageDialog(this, mensaje);
-            tfId.setText("");
+            limpiar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error " + e);
         }
@@ -789,31 +774,11 @@ public class crudPlay extends javax.swing.JFrame {
             String mensaje = resultado ? "El juego fue actualizado correctamente" : "El juego no pudo ser actualizado";
             //la sentencia 'this' se usa para pasar un valor a la misma clase
             JOptionPane.showMessageDialog(this, mensaje);
-            //limpiar();
+            limpiar();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "error " + e);
         }
-        /*
-        try{
-            EstudianteVO nuevo = new EstudianteVO();
-            nuevo.setNombres(txtNombres.getText());
-            nuevo.setApellidos(txtApellidos.getText());
-            nuevo.setNacimiento(txtNacimiento.getText());
-            nuevo.setPrograma(txtPrograma.getText());
-            nuevo.setCelular(Long.parseLong(txtCelular.getText()));
-            nuevo.setCorreoInst(txtCorreoInst.getText());
-            //carga los datos a traves de nuevo
-            boolean resultado = new EstudianteBO().actualizarEstudiante(nuevo);
-            String mensaje = resultado ? "el estudiante fue actualizado" : "el estudiante no fue actualizado";
-            //limpiar();
-            //btnActualizar.setEnabled(false);
-            btnEliminar.setEnabled(true);
-            //la sentencia this se usa para pasar un valor
-            JOptionPane.showMessageDialog(this, mensaje);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error " + e);
-        }*/
     }//GEN-LAST:event_txtActualizarMousePressed
 
     private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
@@ -882,17 +847,16 @@ public class crudPlay extends javax.swing.JFrame {
     private void txtConsultar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultar1MousePressed
         modelo.setRowCount(0);//Resetear Filas
         List<PlayVO> juegosXbox = null;
-        if (tfId.getText().equals("")) {
+        if (tfTitulo.getText().equals("")) {
             llenarTabla();
         } else {
             juegosXbox = new ArrayList();
-            int id = Integer.parseInt(tfId.getText());
-            juegosXbox.add(new PlayBO().consultar_por_id(id));
+            juegosXbox.add(new PlayBO().consultar_por_titulo(tfTitulo.getText()));
 
             for (PlayVO play : juegosXbox){
-            String fila[] = {id++ + "", play.getTitulo(), play.getFecha(), play.getConsola(), play.getGenero(), play.getFormato(), play.getDirector()};
+            String fila[] = {play.getTitulo(), play.getFecha(), play.getConsola(), play.getGenero(), play.getFormato(), play.getDirector()};
             modelo.addRow(fila);
-            tfId.setText("");
+            
         }
         }
 
@@ -953,19 +917,18 @@ public class crudPlay extends javax.swing.JFrame {
     private javax.swing.JPanel btnEnviar;
     private javax.swing.JComboBox<String> cbConsola;
     private javax.swing.JComboBox<String> cbGenero;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpBotones;
     private javax.swing.JPanel jpExit;
     private javax.swing.JPanel jpID1;
     private javax.swing.JPanel jpIngresarDatos;
-    private javax.swing.JLabel lbId;
     private javax.swing.JRadioButton rbColeccionista;
     private javax.swing.JRadioButton rbDigital;
     private javax.swing.JRadioButton rbFisico;
     private javax.swing.JTextField tfConverFecha;
     private javax.swing.JTextField tfDirector;
-    private javax.swing.JTextField tfId;
     private javax.swing.JTextField tfTitulo;
     private javax.swing.JLabel txtActualizar;
     private javax.swing.JLabel txtCargarDatos;

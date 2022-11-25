@@ -12,7 +12,6 @@ import java.util.Date;
  * @author andre
  */
 public class PlayVO {
-    private int id;
     private String Titulo;
     private String Fecha;
     private String Genero;
@@ -23,8 +22,7 @@ public class PlayVO {
     public PlayVO() {
     }
 
-    public PlayVO(int id, String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
-        this.id = id;
+    public PlayVO(String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
         this.Titulo = Titulo;
         this.Fecha = Fecha;
         this.Genero = Genero;
@@ -101,20 +99,6 @@ public class PlayVO {
      */
     public void setDirector(String Director) {
         this.Director = Director;
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

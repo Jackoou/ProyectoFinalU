@@ -31,14 +31,14 @@ public class XboxBO {
     }
     
     public boolean eliminar_juego(XboxVO juegoXbox){
-        return Xboxdao.eliminar_juego(juegoXbox.getId());
+        return Xboxdao.eliminar_juego(juegoXbox.getTitulo());
     }
     
     public List<XboxVO> consultar_todos(){
         return Xboxdao.consultar_todos();
     }
     
-    public XboxVO consultar_por_id(int id){
-        return Xboxdao.consultar_por_id(id);
+    public XboxVO consultar_por_titulo(String titulo){
+        return Xboxdao.consultar_por_titulo(titulo);
     }
 }

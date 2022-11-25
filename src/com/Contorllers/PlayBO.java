@@ -31,15 +31,15 @@ public class PlayBO {
     }
     
     public boolean eliminar_juego(PlayVO juegoPlay){
-        return Playdao.eliminar_juego(juegoPlay.getId());
+        return Playdao.eliminar_juego(juegoPlay.getTitulo());
     }
     
     public List<PlayVO> consultar_todos(){
         return Playdao.consultar_todos();
     }
     
-    public PlayVO consultar_por_id(int id){
-        return Playdao.consultar_por_id(id);
+    public PlayVO consultar_por_titulo(String titulo){
+        return Playdao.consultar_por_titulo(titulo);
     }
     
 }

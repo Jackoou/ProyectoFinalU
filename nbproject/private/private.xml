@@ -3,8 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Frames/crudXbox.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Models/PlayVO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Models/XboxVO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Models/SwitchVO.java</file>
             <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Frames/crudPlay.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/XboxDAO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/PlayDAO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Contorllers/SwitchBO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/ISwitchDAO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Contorllers/XboxBO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Connection/BaseConnection1.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Contorllers/PlayBO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/IPlayDAO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/IXboxDAO.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Frames/crudXbox.java</file>
+            <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Interfaces/SwitchDAO.java</file>
             <file>file:/D:/UEcci/Programación%20III/ProjectoFinal/src/com/Frames/crudSwitch.java</file>
         </group>
     </open-files>

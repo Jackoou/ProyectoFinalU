@@ -31,15 +31,15 @@ public class SwitchBO {
     }
     
     public boolean eliminar_juego(SwitchVO juegoSwitch){
-        return Switchdao.eliminar_juego(juegoSwitch.getId());
+        return Switchdao.eliminar_juego(juegoSwitch.getTitulo());
     }
     
     public List<SwitchVO> consultar_todos(){
         return Switchdao.consultar_todos();
     }
     
-    public SwitchVO consultar_por_id(int id){
-        return Switchdao.consultar_por_id(id);
+    public SwitchVO consultar_por_titulo(String titulo){
+        return Switchdao.consultar_por_titulo(titulo);
     }
     
 }

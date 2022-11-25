@@ -31,10 +31,7 @@ public class crudXbox extends javax.swing.JFrame {
     
     public void llenarTabla() {
 
-        int id = 1;
-
         modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
         modelo.addColumn("TITULO");
         modelo.addColumn("FECHA");
         modelo.addColumn("CONSOLA");
@@ -45,22 +42,22 @@ public class crudXbox extends javax.swing.JFrame {
 
         List<XboxVO> juegosXbox = new XboxBO().consultar_todos();
         for (XboxVO xbox : juegosXbox) {
-            String fila[] = {id++ +"", xbox.getTitulo(), xbox.getFecha(), xbox.getConsola(), xbox.getGenero(), xbox.getFormato(), xbox.getDirector()};
+            String fila[] = {xbox.getTitulo(), xbox.getFecha(), xbox.getConsola(), xbox.getGenero(), xbox.getFormato(), xbox.getDirector()};
             modelo.addRow(fila);
         }
-        TDatos.getColumnModel().getColumn(0).setPreferredWidth(3);
-        TDatos.getColumnModel().getColumn(1).setPreferredWidth(200);
-        TDatos.getColumnModel().getColumn(2).setPreferredWidth(70);
-        TDatos.getColumnModel().getColumn(3).setPreferredWidth(80);
-        TDatos.getColumnModel().getColumn(4).setPreferredWidth(55);
-        TDatos.getColumnModel().getColumn(5).setPreferredWidth(80);
+        
+        TDatos.getColumnModel().getColumn(0).setPreferredWidth(200);
+        TDatos.getColumnModel().getColumn(1).setPreferredWidth(50);
+        TDatos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        TDatos.getColumnModel().getColumn(3).setPreferredWidth(55);
+        TDatos.getColumnModel().getColumn(5).setPreferredWidth(100);
         
         
     }
 
     public void limpiar() {
         tfTitulo.setText(null);
-        txtDate.setText(null);
+        txtDate.setText("");
         cbConsola.setSelectedIndex(0);
         cbGenero.setSelectedIndex(0);
         SeleccionFormato.clearSelection();
@@ -82,7 +79,7 @@ public class crudXbox extends javax.swing.JFrame {
     }
     
     private boolean RetornarFormato() {
-        XboxVO xbox = new XboxBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+        XboxVO xbox = new XboxBO().consultar_por_titulo(tfTitulo.getText());
         boolean eleccion = false;
         if (xbox.getFormato().equals("Fisico")) {
             rbFisico.setSelected(true);
@@ -138,10 +135,9 @@ public class crudXbox extends javax.swing.JFrame {
         jpID = new javax.swing.JPanel();
         btnConsultar = new javax.swing.JPanel();
         txtConsultar = new javax.swing.JLabel();
-        tfId = new javax.swing.JTextField();
-        lbId = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TDatos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -591,41 +587,24 @@ public class crudXbox extends javax.swing.JFrame {
             .addComponent(txtConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        tfId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        lbId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbId.setText("Ingrese el Id");
-
         javax.swing.GroupLayout jpIDLayout = new javax.swing.GroupLayout(jpID);
         jpID.setLayout(jpIDLayout);
         jpIDLayout.setHorizontalGroup(
             jpIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpIDLayout.createSequentialGroup()
-                .addGroup(jpIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpIDLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpIDLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(50, 50, 50)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jpIDLayout.setVerticalGroup(
             jpIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIDLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jpIDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfId))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        jPanel1.add(jpID, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, 250, 110));
+        jPanel1.add(jpID, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, 250, 80));
 
         TDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -641,6 +620,9 @@ public class crudXbox extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TDatos);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 740, 110));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/645-6457086_logo-de-los-videojuegos-hd-png-download.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 50, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Halo-Infinite-UK-release-date-age-rating-and-parents-guide (1).jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -708,7 +690,8 @@ public class crudXbox extends javax.swing.JFrame {
             nuevo.setFecha(txtDate.getText());
             //carga los datos a través de 'nuevo'
             boolean resultado = new XboxBO().insertar_juego(nuevo);
-            String mensaje = resultado ? "El juego fue registrado correctamente" : "El juego no fue registrado";
+            String mensaje = resultado ? "El juego fue registrado correctamente" : "El juego no pudo ser registrado";
+            limpiar();
             //la sentencia 'this' se usa para pasar un valor a la misma clase
             JOptionPane.showMessageDialog(this, mensaje);
         } catch (Exception e) {
@@ -750,7 +733,7 @@ public class crudXbox extends javax.swing.JFrame {
             String mensaje = resultado ? "El juego fue actualizado correctamente" : "El juego no pudo ser actualizado";
             //la sentencia 'this' se usa para pasar un valor a la misma clase
             JOptionPane.showMessageDialog(this, mensaje);
-            //limpiar();
+            limpiar();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "error " + e);
@@ -776,37 +759,19 @@ public class crudXbox extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConsultarMouseExited
 
     private void txtConsultarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtConsultarMousePressed
-        /*try {
-            int id = Integer.parseInt(tfId.getText());
-            XboxVO encontrado = new XboxBO().consultar_por_id(id);
-            if (encontrado != null) {
-                txtTitulo.setText(encontrado.getTitulo());
-                txtDate.setText(encontrado.getFecha());
-                cbConsola.setSelectedItem(encontrado.getConsola());
-                cbGenero.setSelectedItem(encontrado.getGenero());
-                //formato----
-                tfDirector.setText(encontrado.getDirector());
-            } else {
-                JOptionPane.showMessageDialog(this, "Juego no encontrado");
-                JOptionPane.showMessageDialog(this, "Ingrese el ID del juego");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error " + e);
-        }*/
         
         modelo.setRowCount(0);//Resetear Filas
         List<XboxVO> juegosXbox = null;
-        if (tfId.getText().equals("")) {
+        if (tfTitulo.getText().equals("")) {
             llenarTabla();
         } else {
             juegosXbox = new ArrayList();
-            int id = Integer.parseInt(tfId.getText());
-            juegosXbox.add(new XboxBO().consultar_por_id(id));
+            juegosXbox.add(new XboxBO().consultar_por_titulo(tfTitulo.getText()));
 
             for (XboxVO xbox : juegosXbox){
-            String fila[] = {id++ + "", xbox.getTitulo(), xbox.getFecha(), xbox.getConsola(), xbox.getGenero(), xbox.getFormato(), xbox.getDirector()};
+            String fila[] = {xbox.getTitulo(), xbox.getFecha(), xbox.getConsola(), xbox.getGenero(), xbox.getFormato(), xbox.getDirector()};
             modelo.addRow(fila);
-            tfId.setText("");
+            
         }
         }
 
@@ -833,13 +798,13 @@ public class crudXbox extends javax.swing.JFrame {
     private void txtEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEliminarMousePressed
         try {
             XboxVO xbox = new XboxVO();
-            xbox.setId(Integer.parseInt(tfId.getText()));
+            xbox.setTitulo(tfTitulo.getText());
             boolean resultado = new XboxBO().eliminar_juego(xbox);
-            String mensaje = resultado ? "el estudiante fue eliminado" : "el estudiante no fue eliminado";
+            String mensaje = resultado ? "El juego fue eliminado satisfactoriamente" : "el juego no pudo ser eliminado";
 
             //la sentencia this se usa para pasar un valor
             JOptionPane.showMessageDialog(this, mensaje);
-            tfId.setText("");
+            limpiar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error " + e);
         }
@@ -870,9 +835,9 @@ public class crudXbox extends javax.swing.JFrame {
     
     private void txtCargarDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCargarDatosMousePressed
         try {
-            XboxVO xbox = new XboxBO().consultar_por_id(Integer.parseInt(tfId.getText()));
+            XboxVO xbox = new XboxBO().consultar_por_titulo(tfTitulo.getText());
 
-            tfTitulo.setText(xbox.getTitulo());
+            
             txtDate.setText(xbox.getFecha());
             cbConsola.setSelectedItem(xbox.getConsola());
             cbGenero.setSelectedItem(xbox.getGenero());
@@ -880,7 +845,7 @@ public class crudXbox extends javax.swing.JFrame {
             tfDirector.setText(xbox.getDirector());
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Estudiante no encontrado");
+            JOptionPane.showMessageDialog(this, "Juego no encontrado");
         } 
     }//GEN-LAST:event_txtCargarDatosMousePressed
 /*
@@ -946,18 +911,17 @@ public class crudXbox extends javax.swing.JFrame {
     private javax.swing.JPanel btnInsertar;
     private javax.swing.JComboBox<String> cbConsola;
     private javax.swing.JComboBox<String> cbGenero;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPBotones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpExit;
     private javax.swing.JPanel jpID;
     private javax.swing.JPanel jpIngresarDatos;
-    private javax.swing.JLabel lbId;
     private javax.swing.JRadioButton rbColeccionista;
     private javax.swing.JRadioButton rbDigital;
     private javax.swing.JRadioButton rbFisico;
     private javax.swing.JTextField tfDirector;
-    private javax.swing.JTextField tfId;
     private javax.swing.JTextField tfTitulo;
     private javax.swing.JLabel txtActualizar;
     private javax.swing.JLabel txtCargarDatos;

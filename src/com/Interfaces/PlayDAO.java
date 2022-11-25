@@ -44,14 +44,14 @@ public class PlayDAO extends BaseConnection1 implements IPlayDAO {
     public boolean actualizar_juego(PlayVO juegoPlay) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("update Play set titulo=?, fecha=?, consola=?, genero=?, formato=?, director=? where id=?");
-            sentencia.setInt(0, juegoPlay.getId());
-            sentencia.setString(1, juegoPlay.getTitulo());
-            sentencia.setString(2, juegoPlay.getFecha());
-            sentencia.setString(3, juegoPlay.getConsola());
-            sentencia.setString(4, juegoPlay.getGenero());
-            sentencia.setString(5, juegoPlay.getFormato());
-            sentencia.setString(6, juegoPlay.getDirector());
+            PreparedStatement sentencia = conexion.prepareStatement("update Play set fecha=?, consola=?, genero=?, formato=?, director=? where titulo=?");
+            
+            sentencia.setString(1, juegoPlay.getFecha());
+            sentencia.setString(2, juegoPlay.getConsola());
+            sentencia.setString(3, juegoPlay.getGenero());
+            sentencia.setString(4, juegoPlay.getFormato());
+            sentencia.setString(5, juegoPlay.getDirector());
+            sentencia.setString(6, juegoPlay.getTitulo());
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -63,11 +63,11 @@ public class PlayDAO extends BaseConnection1 implements IPlayDAO {
     }
 
     @Override
-    public boolean eliminar_juego(int id) {
+    public boolean eliminar_juego(String titulo) {
         try {
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("delete from Play where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("delete from Play where titulo=?");
+            sentencia.setString(1, titulo);
             sentencia.executeUpdate();
             desconectar();
             return true;
@@ -103,17 +103,16 @@ public class PlayDAO extends BaseConnection1 implements IPlayDAO {
     }
 
     @Override
-    public PlayVO consultar_por_id(int id) {
+    public PlayVO consultar_por_titulo(String titulo) {
         try {
 
             //List<PlayVO> juegosPlay = new ArrayList();
             conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("select * from Play where id=?");
-            sentencia.setInt(1, id);
+            PreparedStatement sentencia = conexion.prepareStatement("select * from Play where titulo=?");
+            sentencia.setString(1, titulo);
             ResultSet datos = sentencia.executeQuery();
             if(datos.next()){
                 PlayVO juegoPlay = new PlayVO();
-                juegoPlay.setId(datos.getInt("id"));
                 juegoPlay.setTitulo(datos.getString("titulo"));
                 juegoPlay.setFecha(datos.getString("fecha"));
                 juegoPlay.setConsola(datos.getString("consola"));

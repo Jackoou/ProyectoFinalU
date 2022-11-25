@@ -13,8 +13,6 @@ import java.util.Date;
  */
 public class SwitchVO {
 
-    
-    private int id;
     private String Titulo;
     private String Fecha;
     private String Genero;
@@ -25,8 +23,7 @@ public class SwitchVO {
     public SwitchVO() {
     }
 
-    public SwitchVO(int id, String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
-        this.id = id;
+    public SwitchVO(String Titulo, String Fecha, String Genero, String Consola, String Formato, String Director) {
         this.Titulo = Titulo;
         this.Fecha = Fecha;
         this.Genero = Genero;
@@ -103,20 +100,6 @@ public class SwitchVO {
      */
     public void setDirector(String Director) {
         this.Director = Director;
-    }
-    
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

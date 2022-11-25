@@ -1,13 +1,12 @@
 package com.Frames;
 
-
 import java.awt.Color;
 
 public class LoginGaming extends javax.swing.JFrame {
-    
+
     int xMouse, yMouse;
     SeleccionConsola segundoFrame = new SeleccionConsola();
-    
+
     public LoginGaming() {
         initComponents();
     }
@@ -26,10 +25,9 @@ public class LoginGaming extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JPanel();
         txtEntrar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -41,7 +39,7 @@ public class LoginGaming extends javax.swing.JFrame {
         imgPanda.setBackground(new java.awt.Color(0, 0, 0));
         imgPanda.setForeground(new java.awt.Color(204, 204, 0));
         imgPanda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/220px-Panda3D_Logo.png"))); // NOI18N
-        jPanel1.add(imgPanda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        jPanel1.add(imgPanda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
 
         Header.setOpaque(false);
         Header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -137,17 +135,6 @@ public class LoginGaming extends javax.swing.JFrame {
             }
         });
 
-        txtContraseña.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        txtContraseña.setText("CONTRASEÑA");
-
-        tfPassword.setForeground(new java.awt.Color(204, 204, 204));
-        tfPassword.setText("123456789");
-        tfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tfPasswordMousePressed(evt);
-            }
-        });
-
         btnLogin.setBackground(new java.awt.Color(49, 78, 146));
         btnLogin.setForeground(new java.awt.Color(49, 78, 146));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,33 +167,39 @@ public class LoginGaming extends javax.swing.JFrame {
         btnLogin.setLayout(btnLoginLayout);
         btnLoginLayout.setHorizontalGroup(
             btnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLoginLayout.createSequentialGroup()
-                .addComponent(txtEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(txtEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
         );
         btnLoginLayout.setVerticalGroup(
             btnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLoginLayout.createSequentialGroup()
-                .addComponent(txtEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(txtEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/645-6457086_logo-de-los-videojuegos-hd-png-download.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DatosIngresoLayout = new javax.swing.GroupLayout(DatosIngreso);
         DatosIngreso.setLayout(DatosIngresoLayout);
         DatosIngresoLayout.setHorizontalGroup(
             DatosIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosIngresoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
             .addGroup(DatosIngresoLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(DatosIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DatosIngresoLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DatosIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtContraseña)
-                        .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtUsuario)
-                        .addComponent(tfUsuario)))
+                        .addGap(33, 33, 33)
+                        .addGroup(DatosIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtUsuario)
+                            .addComponent(tfUsuario)))
+                    .addGroup(DatosIngresoLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel1)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         DatosIngresoLayout.setVerticalGroup(
@@ -214,17 +207,15 @@ public class LoginGaming extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosIngresoLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(52, 52, 52)
                 .addComponent(txtUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtContraseña)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jLabel1)
+                .addGap(51, 51, 51)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(220, 220, 220))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         jPanel1.add(DatosIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 270, 560));
@@ -267,7 +258,7 @@ public class LoginGaming extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExitMouseEntered
 
     private void txtExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitMouseExited
-        jpExit.setBackground(new Color(9,9,11));
+        jpExit.setBackground(new Color(9, 9, 11));
         txtExit.setForeground(Color.white);
     }//GEN-LAST:event_txtExitMouseExited
 
@@ -276,12 +267,9 @@ public class LoginGaming extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseExited
 
     private void txtEntrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEntrarMousePressed
-        if(tfUsuario.getText().equals("Ingrese el nombre de usuario") || tfUsuario.getText().equals("")){ 
+        if (tfUsuario.getText().equals("Ingrese el nombre de usuario") || tfUsuario.getText().equals("")) {
             javax.swing.JOptionPane.showMessageDialog(this, "El campo de Nombre no puede estar vacio.", "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        }else if(String.valueOf(tfPassword.getPassword()).equals("123456789") || String.valueOf(tfPassword.getPassword()).isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "El campo de Password no puede estar vacio.", "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
+        } else {
             //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             //Aquí cambia de JFrame
             this.setVisible(false);
@@ -291,28 +279,17 @@ public class LoginGaming extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEntrarMousePressed
 
     private void txtEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEntrarMouseExited
-        btnLogin.setBackground(new Color(49,78,146));
+        btnLogin.setBackground(new Color(49, 78, 146));
         txtEntrar.setForeground(Color.white);
     }//GEN-LAST:event_txtEntrarMouseExited
 
     private void txtEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEntrarMouseEntered
-        btnLogin.setBackground(new Color(173,181,227));
+        btnLogin.setBackground(new Color(173, 181, 227));
         txtEntrar.setForeground(Color.black);
     }//GEN-LAST:event_txtEntrarMouseEntered
 
-    private void tfPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfPasswordMousePressed
-        if(String.valueOf(tfPassword.getPassword()).equals("123456789")){
-            tfPassword.setText("");
-            tfPassword.setForeground(Color.black);
-        }
-        if(tfUsuario.getText().isEmpty()){
-            tfUsuario.setText("Ingrese el nombre de usuario");
-            tfUsuario.setForeground(Color.gray);
-        }
-    }//GEN-LAST:event_tfPasswordMousePressed
-
     private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
-        
+
     }//GEN-LAST:event_btnLoginMousePressed
 
     private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
@@ -320,15 +297,24 @@ public class LoginGaming extends javax.swing.JFrame {
     }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void tfUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfUsuarioMousePressed
-        if(tfUsuario.getText().equals("Ingrese el nombre de usuario")){
+        if (tfUsuario.getText().equals("Ingrese el nombre de usuario")) {
             tfUsuario.setText("");
             tfUsuario.setForeground(Color.black);
         }
-        if(String.valueOf(tfPassword.getPassword()).isEmpty()){
-            tfPassword.setText("123456789");
-            tfPassword.setForeground(Color.gray);
-        }
+
     }//GEN-LAST:event_tfUsuarioMousePressed
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        if (tfUsuario.getText().equals("Ingrese el nombre de usuario") || tfUsuario.getText().equals("")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El campo de Nombre no puede estar vacio.", "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " +tfUsuario.getText()+ "\nContraseña: "+ String.valueOf(tfPassword.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            //Aquí cambia de JFrame
+            this.setVisible(false);
+            segundoFrame.setVisible(true);
+        }
+        segundoFrame.tfUsuario.setText(tfUsuario.getText());
+    }//GEN-LAST:event_jLabel1MousePressed
 
     /**
      * @param args the command line arguments
@@ -372,15 +358,14 @@ public class LoginGaming extends javax.swing.JFrame {
     private javax.swing.JLabel ImagenJuegos;
     private javax.swing.JPanel btnLogin;
     private javax.swing.JLabel imgPanda;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpExit;
-    private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUsuario;
-    private javax.swing.JLabel txtContraseña;
     private javax.swing.JLabel txtEntrar;
     private javax.swing.JLabel txtExit;
     private javax.swing.JLabel txtTitulo;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
-    
+
 }
